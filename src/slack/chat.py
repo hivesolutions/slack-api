@@ -44,6 +44,8 @@ class ChatApi(object):
         channel,
         text,
         parse = None,
+        link_names = None,
+        attachments = None,
         username = None,
         as_user = None
     ):
@@ -53,6 +55,8 @@ class ChatApi(object):
             channel = channel,
             text = text,
             parse = parse,
+            link_names = link_names,
+            attachments = attachments,
             username = username,
             as_user = as_user
         )

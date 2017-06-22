@@ -40,6 +40,7 @@ __license__ = "Apache License, Version 2.0"
 import appier
 
 from . import chat
+from . import emoji
 
 BASE_URL = "https://slack.com/api/"
 """ The default base url to be used when no other
@@ -71,7 +72,8 @@ scope string for the oauth value """
 
 class Api(
     appier.OAuth2Api,
-    chat.ChatApi
+    chat.ChatApi,
+    emoji.EmojiApi
 ):
 
     def __init__(self, *args, **kwargs):
