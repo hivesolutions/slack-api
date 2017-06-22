@@ -62,6 +62,15 @@ class SlackApp(appier.WebApp):
         contents = api.test()
         return contents
 
+    @appier.route("/<str:channel>/post_message", "GET")
+    def post_message(self, channel):
+        text = self.field("text", mandatory = True)
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        api = self.get_api()
+        contents = api.post_message_chat(channel, text)
+        return contents
+
     @appier.route("/oauth", "GET")
     def oauth(self):
         code = self.field("code")
