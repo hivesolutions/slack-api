@@ -76,26 +76,26 @@ class SlackApp(appier.WebApp):
         code = self.field("code")
         api = self.get_api()
         access_token = api.oauth_access(code)
-        self.session["gg.access_token"] = access_token
+        self.session["slack.access_token"] = access_token
         return self.redirect(
             self.url_for("slack.index")
         )
 
     @appier.exception_handler(appier.OAuthAccessError)
     def oauth_error(self, error):
-        if "gg.access_token" in self.session: del self.session["gg.access_token"]
+        if "slack.access_token" in self.session: del self.session["slack.access_token"]
         return self.redirect(
             self.url_for("slack.index")
         )
 
     def ensure_api(self):
-        access_token = self.session.get("gg.access_token", None)
+        access_token = self.session.get("slack.access_token", None)
         if access_token: return
         api = base.get_api()
         return api.oauth_authorize()
 
     def get_api(self):
-        access_token = self.session and self.session.get("gg.access_token", None)
+        access_token = self.session and self.session.get("slack.access_token", None)
         api = base.get_api()
         api.access_token = access_token
         return api

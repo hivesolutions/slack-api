@@ -62,7 +62,8 @@ REDIRECT_URL = "http://localhost:8080/oauth"
 in case none is provided to the api (client) """
 
 SCOPE = (
-    "incoming-webhook",
+    "chat:write:user",
+    "incoming-webhook"
 )
 """ The list of permissions to be used to create the
 scope string for the oauth value """

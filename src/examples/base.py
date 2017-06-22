@@ -42,7 +42,8 @@ import appier
 import slack
 
 SCOPE = (
-    "incoming-webhook",
+    "chat:write:user",
+    "incoming-webhook"
 )
 
 def get_api():
