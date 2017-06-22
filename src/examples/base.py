@@ -44,6 +44,7 @@ import slack
 SCOPE = (
     "chat:write:user",
     "chat:write:bot",
+    "emoji:read",
     "incoming-webhook"
 )
 
