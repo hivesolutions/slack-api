@@ -62,6 +62,14 @@ class SlackApp(appier.WebApp):
         contents = api.test()
         return contents
 
+    @appier.route("/emoji", "GET")
+    def emoji(self):
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        api = self.get_api()
+        contents = api.list_emoji()
+        return contents
+
     @appier.route("/<str:channel>/post_message", "GET")
     def post_message(self, channel):
         text = self.field("text", mandatory = True)
