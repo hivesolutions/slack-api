@@ -90,10 +90,7 @@ class Api(
         self.access_token = kwargs.get("access_token", None)
 
     def auth_callback(self, params, headers):
-        if not self.refresh_token: return
-        self.oauth_refresh()
-        params["access_token"] = self.get_access_token()
-        headers["Authorization"] = "Bearer %s" % self.get_access_token()
+        params["token"] = self.get_access_token()
 
     def oauth_authorize(self, state = None, team = None):
         url = self.login_url + "oauth/authorize"
