@@ -106,7 +106,7 @@ class Api(
         return url
 
     def oauth_access(self, code):
-        url = self.base_url + "api/oauth.access"
+        url = self.base_url + "oauth.access"
         contents = self.post(
             url,
             token = False,
