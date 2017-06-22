@@ -63,6 +63,7 @@ in case none is provided to the api (client) """
 
 SCOPE = (
     "chat:write:user",
+    "chat:write:bot",
     "incoming-webhook"
 )
 """ The list of permissions to be used to create the

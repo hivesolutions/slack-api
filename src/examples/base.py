@@ -43,6 +43,7 @@ import slack
 
 SCOPE = (
     "chat:write:user",
+    "chat:write:bot",
     "incoming-webhook"
 )
 

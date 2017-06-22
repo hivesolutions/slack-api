@@ -39,12 +39,21 @@ __license__ = "Apache License, Version 2.0"
 
 class ChatApi(object):
 
-    def post_message_chat(self, channel, text, parse = None):
+    def post_message_chat(
+        self,
+        channel,
+        text,
+        parse = None,
+        username = None,
+        as_user = None
+    ):
         url = self.base_url + "chat.postMessage"
         contents = self.post(
             url,
             channel = channel,
             text = text,
-            parse = parse
+            parse = parse,
+            username = username,
+            as_user = as_user
         )
         return contents
