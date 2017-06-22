@@ -37,9 +37,18 @@ __copyright__ = "Copyright (c) 2008-2017 Hive Solutions Lda."
 __license__ = "Apache License, Version 2.0"
 """ The license for the module """
 
-class UserApi(object):
+import appier
 
-    def self_user(self):
-        url = self.base_url + "plus/v1/people/me"
-        contents = self.get(url)
-        return contents
+import slack
+
+SCOPE = (
+    "incoming-webhook",
+)
+
+def get_api():
+    return slack.Api(
+        client_id = appier.conf("SLACK_ID"),
+        client_secret = appier.conf("SLACK_SECRET"),
+        redirect_url = appier.conf("SLACK_REDIRECT_URL"),
+        scope = SCOPE
+    )

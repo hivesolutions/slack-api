@@ -37,10 +37,14 @@ __copyright__ = "Copyright (c) 2008-2017 Hive Solutions Lda."
 __license__ = "Apache License, Version 2.0"
 """ The license for the module """
 
-class TokenApi(object):
+class ChatApi(object):
 
-    def info_token(self, access_token = None):
-        access_token = access_token or self.access_token
-        url = self.base_url + "oauth2/v1/tokeninfo"
-        contents = self.get(url, access_token = access_token)
+    def post_message_chat(self, channel, text, parse = None):
+        url = self.base_url + "chat.postMessage"
+        contents = self.post(
+            url,
+            channel = channel,
+            text = text,
+            parse = parse
+        )
         return contents

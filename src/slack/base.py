@@ -39,9 +39,7 @@ __license__ = "Apache License, Version 2.0"
 
 import appier
 
-from . import user
-from . import drive
-from . import token
+from . import chat
 
 BASE_URL = "https://slack.com/api/"
 """ The default base url to be used when no other
@@ -71,9 +69,7 @@ scope string for the oauth value """
 
 class Api(
     appier.OAuth2Api,
-    user.UserApi,
-    drive.DriveApi,
-    token.TokenApi
+    chat.ChatApi
 ):
 
     def __init__(self, *args, **kwargs):
@@ -118,3 +114,12 @@ class Api(
         self.access_token = contents["access_token"]
         self.trigger("access_token", self.access_token)
         return self.access_token
+
+    def test(self, error = None, foo = None):
+        url = self.base_url + "api.test"
+        contents = self.post(
+            url,
+            error = error,
+            foo = foo
+        )
+        return contents
