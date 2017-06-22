@@ -86,9 +86,6 @@ class Api(
         self.scope = kwargs.get("scope", SCOPE)
         self.access_token = kwargs.get("access_token", None)
 
-    def auth_callback(self, params, headers):
-        params["token"] = self.get_access_token()
-
     def oauth_authorize(self, state = None, team = None):
         url = self.login_url + "oauth/authorize"
         values = dict(
@@ -124,3 +121,7 @@ class Api(
             foo = foo
         )
         return contents
+
+    @property
+    def oauth_param(self):
+        return "token"
