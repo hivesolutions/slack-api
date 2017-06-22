@@ -43,7 +43,7 @@ from . import user
 from . import drive
 from . import token
 
-BASE_URL = "https://www.googleapis.com/"
+BASE_URL = "https://slack.com/api/"
 """ The default base url to be used when no other
 base url value is provided to the constructor """
 
@@ -64,7 +64,7 @@ REDIRECT_URL = "http://localhost:8080/oauth"
 in case none is provided to the api (client) """
 
 SCOPE = (
-    "email",
+    "incoming-webhook",
 )
 """ The list of permissions to be used to create the
 scope string for the oauth value """
@@ -88,7 +88,6 @@ class Api(
         self.redirect_url = kwargs.get("redirect_url", self.redirect_url)
         self.scope = kwargs.get("scope", SCOPE)
         self.access_token = kwargs.get("access_token", None)
-        self.refresh_token = kwargs.get("refresh_token", None)
 
     def auth_callback(self, params, headers):
         if not self.refresh_token: return
@@ -110,33 +109,14 @@ class Api(
         return url
 
     def oauth_access(self, code):
-        url = self.login_url + "oauth2/token"
+        url = self.base_url + "api/oauth.access"
         contents = self.post(
             url,
             token = False,
             client_id = self.client_id,
             client_secret = self.client_secret,
-            grant_type = "authorization_code",
             redirect_uri = self.redirect_url,
             code = code
-        )
-        self.access_token = contents["access_token"]
-        self.refresh_token = contents.get("refresh_token", None)
-        self.trigger("access_token", self.access_token)
-        self.trigger("refresh_token", self.refresh_token)
-        return self.access_token
-
-    def oauth_refresh(self):
-        url = self.login_url + "oauth2/token"
-        contents = self.post(
-            url,
-            callback = False,
-            token = False,
-            client_id = self.client_id,
-            client_secret = self.client_secret,
-            grant_type = "refresh_token",
-            redirect_uri = self.redirect_url,
-            refresh_token = self.refresh_token
         )
         self.access_token = contents["access_token"]
         self.trigger("access_token", self.access_token)
