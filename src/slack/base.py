@@ -1,23 +1,23 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Hive Google API
+# Hive Slack API
 # Copyright (c) 2008-2017 Hive Solutions Lda.
 #
-# This file is part of Hive Google API.
+# This file is part of Hive Slack API.
 #
-# Hive Google API is free software: you can redistribute it and/or modify
+# Hive Slack API is free software: you can redistribute it and/or modify
 # it under the terms of the Apache License as published by the Apache
 # Foundation, either version 2.0 of the License, or (at your option) any
 # later version.
 #
-# Hive Google API is distributed in the hope that it will be useful,
+# Hive Slack API is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # Apache License for more details.
 #
 # You should have received a copy of the Apache License along with
-# Hive Google API. If not, see <http://www.apache.org/licenses/>.
+# Hive Slack API. If not, see <http://www.apache.org/licenses/>.
 
 __author__ = "João Magalhães <joamag@hive.pt>"
 """ The author(s) of the module """
@@ -47,7 +47,7 @@ BASE_URL = "https://www.googleapis.com/"
 """ The default base url to be used when no other
 base url value is provided to the constructor """
 
-LOGIN_URL = "https://accounts.google.com/o/"
+LOGIN_URL = "https://slack.com/"
 """ Default base url that is going to be used for the
 login part of the specification, the oauth login basis """
 
@@ -78,9 +78,9 @@ class Api(
 
     def __init__(self, *args, **kwargs):
         appier.OAuth2Api.__init__(self, *args, **kwargs)
-        self.client_id = appier.conf("GOOGLE_ID", CLIENT_ID)
-        self.client_secret = appier.conf("GOOGLE_SECRET", CLIENT_SECRET)
-        self.redirect_url = appier.conf("GOOGLE_REDIRECT_URL", REDIRECT_URL)
+        self.client_id = appier.conf("SLACK_ID", CLIENT_ID)
+        self.client_secret = appier.conf("SLACK_SECRET", CLIENT_SECRET)
+        self.redirect_url = appier.conf("SLACK_REDIRECT_URL", REDIRECT_URL)
         self.base_url = kwargs.get("base_url", BASE_URL)
         self.login_url = kwargs.get("login_url", LOGIN_URL)
         self.client_id = kwargs.get("client_id", self.client_id)
@@ -96,17 +96,15 @@ class Api(
         params["access_token"] = self.get_access_token()
         headers["Authorization"] = "Bearer %s" % self.get_access_token()
 
-    def oauth_authorize(self, state = None, access_type = None, approval_prompt = True):
-        url = self.login_url + "oauth2/auth"
+    def oauth_authorize(self, state = None, team = None):
+        url = self.login_url + "oauth/authorize"
         values = dict(
             client_id = self.client_id,
             redirect_uri = self.redirect_url,
-            response_type = "code",
             scope = " ".join(self.scope)
         )
         if state: values["state"] = state
-        if access_type: values["access_type"] = access_type
-        if approval_prompt: values["approval_prompt"] = "force"
+        if team: values["team"] = team
         data = appier.legacy.urlencode(values)
         url = url + "?" + data
         return url
