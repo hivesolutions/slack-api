@@ -8,6 +8,10 @@ Implementation of the Slack OAuth based API.
 * `SLACK_SECRET` (`str`) - The secret key to be used to authenticate API requests (defaults to `None`)
 * `SLACK_REDIRECT_URL` (`str`) - The URL to be used for the OAuth redirection process (defaults to `None`)
 
+## License
+
+Slack API is currently licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/).
+
 ## Build Automation
 
 [![Build Status](https://travis-ci.org/hivesolutions/slack_api.svg?branch=master)](https://travis-ci.org/hivesolutions/slack_api)
