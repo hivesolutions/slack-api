@@ -17,4 +17,4 @@ Slack API is currently licensed under the [Apache License, Version 2.0](http://w
 [![Build Status](https://travis-ci.org/hivesolutions/slack_api.svg?branch=master)](https://travis-ci.org/hivesolutions/slack_api)
 [![Coverage Status](https://coveralls.io/repos/hivesolutions/slack_api/badge.svg?branch=master)](https://coveralls.io/r/hivesolutions/slack_api?branch=master)
 [![PyPi Status](https://img.shields.io/pypi/v/slack_api.svg)](https://pypi.python.org/pypi/slack_api)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/)
