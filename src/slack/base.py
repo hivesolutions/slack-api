@@ -70,14 +70,14 @@ SCOPE = (
 """ The list of permissions to be used to create the
 scope string for the oauth value """
 
-class Api(
-    appier.OAuth2Api,
-    chat.ChatApi,
-    emoji.EmojiApi
+class API(
+    appier.OAuth2API,
+    chat.ChatAPI,
+    emoji.EmojiAPI
 ):
 
     def __init__(self, *args, **kwargs):
-        appier.OAuth2Api.__init__(self, *args, **kwargs)
+        appier.OAuth2API.__init__(self, *args, **kwargs)
         self.client_id = appier.conf("SLACK_ID", CLIENT_ID)
         self.client_secret = appier.conf("SLACK_SECRET", CLIENT_SECRET)
         self.redirect_url = appier.conf("SLACK_REDIRECT_URL", REDIRECT_URL)

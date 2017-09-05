@@ -38,6 +38,6 @@ from . import base
 from . import chat
 from . import emoji
 
-from .base import BASE_URL, Api
-from .chat import ChatApi
-from .emoji import EmojiApi
+from .base import BASE_URL, API
+from .chat import ChatAPI
+from .emoji import EmojiAPI

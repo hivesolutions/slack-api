@@ -49,7 +49,7 @@ SCOPE = (
 )
 
 def get_api():
-    return slack.Api(
+    return slack.API(
         client_id = appier.conf("SLACK_ID"),
         client_secret = appier.conf("SLACK_SECRET"),
         redirect_url = appier.conf("SLACK_REDIRECT_URL"),

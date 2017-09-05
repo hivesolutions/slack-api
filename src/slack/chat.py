@@ -39,7 +39,7 @@ __license__ = "Apache License, Version 2.0"
 
 import json
 
-class ChatApi(object):
+class ChatAPI(object):
 
     def post_message_chat(
         self,
