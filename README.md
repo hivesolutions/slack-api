@@ -4,7 +4,7 @@ Implementation of the Slack OAuth based API.
 
 ## Configuration
 
-* `SLACK_ID` (`str`) - The SLACK identifier to make API requests (defaults to `None`)
+* `SLACK_ID` (`str`) - The Slack identifier to make API requests (defaults to `None`)
 * `SLACK_SECRET` (`str`) - The secret key to be used to authenticate API requests (defaults to `None`)
 * `SLACK_REDIRECT_URL` (`str`) - The URL to be used for the OAuth redirection process (defaults to `None`)
 
