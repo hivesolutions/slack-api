@@ -88,6 +88,8 @@ class API(
         self.redirect_url = kwargs.get("redirect_url", self.redirect_url)
         self.scope = kwargs.get("scope", SCOPE)
         self.access_token = kwargs.get("access_token", None)
+        self.incoming_webhook = kwargs.get("incoming_webhook", None)
+        self.channel = kwargs.get("channel", None)
 
     def oauth_authorize(self, state = None, team = None):
         url = self.login_url + "oauth/authorize"
@@ -113,6 +115,8 @@ class API(
             code = code
         )
         self.access_token = contents["access_token"]
+        self.incoming_webhook = contents.get("incoming_webhook", {})
+        self.channel = self.incoming_webhook.get("channel", None)
         self.trigger("access_token", self.access_token)
         return self.access_token
 
