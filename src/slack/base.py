@@ -43,7 +43,7 @@ from . import chat
 from . import emoji
 
 BASE_URL = "https://slack.com/api/"
-""" The default base url to be used when no other
+""" The default base URL to be used when no other
 base url value is provided to the constructor """
 
 LOGIN_URL = "https://slack.com/"
