@@ -48,6 +48,8 @@ class ChatAPI(object):
         parse = None,
         link_names = None,
         attachments = None,
+        icon_emoji = None,
+        icon_url = None,
         username = None,
         as_user = None
     ):
@@ -59,6 +61,8 @@ class ChatAPI(object):
             parse = parse,
             link_names = link_names,
             attachments = json.dumps(attachments),
+            icon_emoji = icon_emoji,
+            icon_url = icon_url,
             username = username,
             as_user = as_user
         )
