@@ -47,20 +47,20 @@ BASE_URL = "https://slack.com/api/"
 base URL value is provided to the constructor """
 
 LOGIN_URL = "https://slack.com/"
-""" Default base url that is going to be used for the
+""" Default base URL that is going to be used for the
 login part of the specification, the oauth login basis """
 
 CLIENT_ID = None
 """ The default value to be used for the client id
-in case no client id is provided to the api client """
+in case no client id is provided to the API client """
 
 CLIENT_SECRET = None
 """ The secret value to be used for situations where
 no client secret has been provided to the client """
 
 REDIRECT_URL = "http://localhost:8080/oauth"
-""" The redirect url used as default (fallback) value
-in case none is provided to the api (client) """
+""" The redirect URL used as default (fallback) value
+in case none is provided to the API (client) """
 
 SCOPE = (
     "chat:write:user",
