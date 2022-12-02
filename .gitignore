@@ -5,4 +5,4 @@ session.shelve*
 
 /dist
 /build
-/src/slack_api.egg-info
+/src/slack-api.egg-info

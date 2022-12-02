@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>slack_api</name>
+	<name>slack-api</name>
 	<comment></comment>
 	<projects>
 		<project>appier</project>
