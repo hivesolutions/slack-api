@@ -3,6 +3,9 @@
 
 session.shelve*
 
+/.env
+/.venv
+
 /dist
 /build
 /src/slack_api.egg-info

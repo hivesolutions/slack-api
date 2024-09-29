@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Hive Slack API
-# Copyright (c) 2008-2020 Hive Solutions Lda.
+# Copyright (c) 2008-2024 Hive Solutions Lda.
 #
 # This file is part of Hive Slack API.
 #
@@ -22,16 +22,7 @@
 __author__ = "João Magalhães <joamag@hive.pt>"
 """ The author(s) of the module """
 
-__version__ = "1.0.0"
-""" The version of the module """
-
-__revision__ = "$LastChangedRevision$"
-""" The revision number of the module """
-
-__date__ = "$LastChangedDate$"
-""" The last change date of the module """
-
-__copyright__ = "Copyright (c) 2008-2020 Hive Solutions Lda."
+__copyright__ = "Copyright (c) 2008-2024 Hive Solutions Lda."
 """ The copyright for the module """
 
 __license__ = "Apache License, Version 2.0"
@@ -62,19 +53,12 @@ REDIRECT_URL = "http://localhost:8080/oauth"
 """ The redirect URL used as default (fallback) value
 in case none is provided to the API (client) """
 
-SCOPE = (
-    "chat:write:user",
-    "chat:write:bot",
-    "incoming-webhook"
-)
+SCOPE = ("chat:write:user", "chat:write:bot", "incoming-webhook")
 """ The list of permissions to be used to create the
 scope string for the OAuth value """
 
-class API(
-    appier.OAuth2API,
-    chat.ChatAPI,
-    emoji.EmojiAPI
-):
+
+class API(appier.OAuth2API, chat.ChatAPI, emoji.EmojiAPI):
 
     def __init__(self, *args, **kwargs):
         appier.OAuth2API.__init__(self, *args, **kwargs)
@@ -91,15 +75,17 @@ class API(
         self.incoming_webhook = kwargs.get("incoming_webhook", None)
         self.channel = kwargs.get("channel", None)
 
-    def oauth_authorize(self, state = None, team = None):
+    def oauth_authorize(self, state=None, team=None):
         url = self.login_url + "oauth/authorize"
         values = dict(
-            client_id = self.client_id,
-            redirect_uri = self.redirect_url,
-            scope = " ".join(self.scope)
+            client_id=self.client_id,
+            redirect_uri=self.redirect_url,
+            scope=" ".join(self.scope),
         )
-        if state: values["state"] = state
-        if team: values["team"] = team
+        if state:
+            values["state"] = state
+        if team:
+            values["team"] = team
         data = appier.legacy.urlencode(values)
         url = url + "?" + data
         return url
@@ -108,11 +94,11 @@ class API(
         url = self.base_url + "oauth.access"
         contents = self.post(
             url,
-            token = False,
-            client_id = self.client_id,
-            client_secret = self.client_secret,
-            redirect_uri = self.redirect_url,
-            code = code
+            token=False,
+            client_id=self.client_id,
+            client_secret=self.client_secret,
+            redirect_uri=self.redirect_url,
+            code=code,
         )
         self.access_token = contents["access_token"]
         self.incoming_webhook = contents.get("incoming_webhook", {})
@@ -120,13 +106,9 @@ class API(
         self.trigger("access_token", self.access_token)
         return self.access_token
 
-    def test(self, error = None, foo = None):
+    def test(self, error=None, foo=None):
         url = self.base_url + "api.test"
-        contents = self.post(
-            url,
-            error = error,
-            foo = foo
-        )
+        contents = self.post(url, error=error, foo=foo)
         return contents
 
     @property
